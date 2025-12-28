@@ -200,4 +200,9 @@ router.get('/check-admin', auth, async (req, res) => {
   }
 });
 
+router.post('/hello',(req, res) => {
+
+  return res.send('<h1>Hello from V-Verify backend server</h1>');
+});
+
 module.exports = router;
