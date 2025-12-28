@@ -11,6 +11,8 @@
     "preview:web": "npm run preview -w apps/web",
     "dev:server": "npm run dev -w apps/server",
     "start:server": "npm run start -w apps/server",
-    "build": "npm run build:web"
+    "build:server": "npm run build -w apps/server",
+    "build": "npm run build:web && npm run build:server",
+    "dev": "npm run dev:web & npm run dev:server"
   }
 }
