@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 210 100% 60%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 30% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 210 100% 55%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 15%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom V VERIFY tokens */
+    --neon-blue: 210 100% 50%;
+    --neon-glow: 0 0 20px hsl(210 100% 50% / 0.5);
+    --crime-red: 0 70% 45%;
+    --dark-navy: 222 60% 3%;
+    --steel-blue: 215 30% 25%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(222 47% 3%) 0%, hsl(222 47% 8%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(222 47% 10%) 0%, hsl(222 47% 6%) 100%);
+    --gradient-neon: linear-gradient(90deg, hsl(210 100% 50%) 0%, hsl(200 100% 60%) 100%);
+
+    /* Shadows */
+    --shadow-neon: 0 0 30px hsl(210 100% 50% / 0.3);
+    --shadow-deep: 0 25px 50px -12px hsl(222 47% 3% / 0.8);
+  }
+
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    @apply tracking-wide;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.3), 0 0 60px hsl(var(--primary) / 0.1);
+  }
+
+  .border-glow {
+    box-shadow: inset 0 0 20px hsl(var(--primary) / 0.1), 0 0 20px hsl(var(--primary) / 0.2);
+  }
+
+  .crime-overlay {
+    background: linear-gradient(
+      180deg,
+      hsl(222 47% 3% / 0.7) 0%,
+      hsl(222 47% 5% / 0.5) 50%,
+      hsl(222 47% 3% / 0.8) 100%
+    );
+  }
+
+  .scanline {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(210 100% 50% / 0.03) 2px,
+      hsl(210 100% 50% / 0.03) 4px
+    );
+  }
+}
+
+@layer components {
+  .section-heading {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-wider;
+  }
+
+  .body-text {
+    @apply text-muted-foreground text-lg leading-relaxed;
+  }
+
+  .neon-border {
+    @apply border border-primary/30 relative;
+  }
+
+  .neon-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-[inherit];
+    box-shadow: inset 0 0 20px hsl(var(--primary) / 0.1);
+  }
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+.animate-flicker {
+  animation: flicker 3s ease-in-out infinite;
+}
